@@ -1,44 +1,37 @@
-// Selection sort in C++
-
 #include <iostream>
 using namespace std;
 
-// function to swap the the position of two elements
-void swap(int *a, int *b) {
-  int temp = *a;
-  *a = *b;
-  *b = temp;
-}
+// display function of array
 
-// function to print an array
-void printArray(int array[], int size) {
-  for (int i = 0; i < size; i++) {
-    cout << array[i] << " ";
+void display(int*arr, int n){
+  for(int i=0; i<n; i++){
+    cout << arr[i] << " " ;
   }
-  cout << endl;
+  cout << endl; 
 }
 
-void selectionSort(int array[], int size) {
-  for (int step = 0; step < size - 1; step++) {
-    int min_idx = step;
-    for (int i = step + 1; i < size; i++) {
+// selection sort function
 
-      // To sort in descending order, change > to < in this line.
-      // Select the minimum element in each loop.
-      if (array[i] < array[min_idx])
-        min_idx = i;
+void selectionsort(int*arr, int n){
+  cout << "Running selection sort.................." << endl;
+  for(int i=0; i<n-1; i++){
+    int min= i;
+    for(int j=i+1; j<n; j++){
+      if(arr[j] < arr[min])
+      min = j;
     }
-
-    // put min at the correct position
-    swap(&array[min_idx], &array[step]);
+    int temp = arr[i];
+    arr[i] = arr[min];
+    arr[min] = temp;
   }
 }
 
-// driver code
-int main() {
-  int data[] = {20, 12, 10, 15, 2};
-  int size = sizeof(data) / sizeof(data[0]);
-  selectionSort(data, size);
-  cout << "Sorted array in Acsending Order:\n";
-  printArray(data, size);
+// Driver program
+
+int main(){
+  int arr[]={96,45,20,0,8};
+  int n=5;
+  display(arr,n);
+  selectionsort(arr,n);
+  display(arr,n);
 }
